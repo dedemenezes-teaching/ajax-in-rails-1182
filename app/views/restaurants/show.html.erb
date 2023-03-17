@@ -1,17 +1,27 @@
 <div class="container">
-  <h1><%= @restaurant.name %></h1>
+  <div class="row justify-content-center">
+    <div class="col-12 col-6" data-controller="insert-review" data-insert-views-pokemon-value="beforeend">
+      <h1><%= @restaurant.name %></h1>
 
-  <h2><%= pluralize(@restaurant.reviews.count, 'review') %></h2>
+      <h2><%= pluralize(@restaurant.reviews.count, 'review') %></h2>
 
-  <div>
-    <% if @restaurant.reviews.blank? %>
-      <p>Be the first to leave a review ✌️</p>
-    <% else %>
-      <% @restaurant.reviews.each do |review|  %>
-        <p><%= review.content %></p>
-      <% end %>
-    <% end %>
+      <div data-insert-review-target='reviews'>
+        <% if @restaurant.reviews.blank? %>
+          <p>Be the first to leave a review ✌️</p>
+        <% else %>
+          <% @restaurant.reviews.each do |review|  %>
+            <%= render 'restaurants/review', review: review %>
+
+          <% end %>
+        <% end %>
+      </div>
+      <%= render 'reviews/form', restaurant: @restaurant, review: @review %>
+    </div>
+
+    <%= link_to 'Back to restaurants', root_path %>
+    </div>
   </div>
 </div>
-
-<%= link_to 'Back to restaurants', root_path %>
+<%#
+data-action="eventType->name-of-your-controller#callbackFunction" -> event listener
+data-name-of-your-controller-target="nameOfYourTarget" -> querySelector %>
