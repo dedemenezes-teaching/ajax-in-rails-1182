@@ -1,0 +1,7 @@
+<div class="container mt-5">
+  <ul>
+    <% @restaurants.each do |restaurant| %>
+      <li><%= link_to restaurant.name, '#' %></li>
+    <% end %>
+  </ul>
+</div>
