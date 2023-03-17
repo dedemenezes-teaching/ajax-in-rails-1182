@@ -1,0 +1,17 @@
+<div class="container">
+  <h1><%= @restaurant.name %></h1>
+
+  <h2><%= pluralize(@restaurant.reviews.count, 'review') %></h2>
+
+  <div>
+    <% if @restaurant.reviews.blank? %>
+      <p>Be the first to leave a review ✌️</p>
+    <% else %>
+      <% @restaurant.reviews.each do |review|  %>
+        <p><%= review.content %></p>
+      <% end %>
+    <% end %>
+  </div>
+</div>
+
+<%= link_to 'Back to restaurants', root_path %>
